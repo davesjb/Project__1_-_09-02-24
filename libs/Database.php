@@ -31,10 +31,20 @@ class Database
         $statement->execute($params);
         return $statement;
     }
-
+    // Read
     public function fetch($sql, $params = [])
     {
         $statement = $this->query($sql, $params);
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function insert($username, $password)
+    {
+        $statement = $this->insert($username, $password);
+        return $statement->insert(PDO::FETCH_ASSOC);
+    }
+
+    // Insert
+
+    // Update
 }

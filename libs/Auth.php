@@ -33,7 +33,8 @@ class Auth
     // Task is simply to logout
     public static function logout()
     {
-        Session::delete("username");
-        Redirect::to("login.php");
+        // Session::delete("username");
+        session_destroy();
+        Redirect::to("/");
     }
 }

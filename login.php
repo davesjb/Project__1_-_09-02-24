@@ -8,20 +8,23 @@ include "init.php";
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Login</title>
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
 </head>
 
 <body>
 
+
+
     <div class="container">
+        <a href="/">home</a>
         <div class="row">
             <div class="col"></div>
             <div class="col-4 mt-4">
 
                 <div class="card">
                     <div class="card-body">
-
+                        <h1>Login</h1>
                         <?php if (Flash::has("error")) : ?>
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 <strong>Error: </strong><?php echo Flash::display("error"); ?>
@@ -40,6 +43,8 @@ include "init.php";
                             </div>
 
                             <button type="submit" class="btn btn-primary">Login</button>
+                            <br><br>
+                            <a href="register.php">register</a>
                         </form>
                     </div>
                 </div>
