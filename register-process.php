@@ -1,4 +1,5 @@
 <?php
+include "init.php";
 
 if (Auth::isLoggedIn()) {
     Redirect::to("dashboard.php");
@@ -9,4 +10,7 @@ if (!Input::has("username") || !Input::has("password")) {
     Redirect::to("register.php");
 }
 
-if()
+$username = Input::get("username");
+$password = Input::get("password");
+
+Auth::register($username, $password);

@@ -38,13 +38,55 @@ class Database
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function insert($username, $password)
+
+    // Insert where what
+    /*
+
+    $table = "users";
+    $data = [
+        "username" => $username,
+        "password => $password
+    ];
+    
+    $database = new Database();
+    $result = $database->insert($table, $data);
+
+    (Chaining =>)
+    */
+
+
+
+
+    public function insert($table, $data)
     {
-        $statement = $this->insert($username, $password);
-        return $statement->insert(PDO::FETCH_ASSOC);
+
+
+        $keys = implode(", ", array_keys($data));
+        $values = ":" . implode(", :", array_keys($data));
+        $sql = "INSERT INTO $table ($keys) VALUES ($values)";
+
+        $this->query($sql, $data);
+
+
+        // username = "david"
+        // password = "p"
+
+        // Tables (users, products, sales, orders, etc)
+        // create a correct SQL INSERT statement
+        // INSERT query with positional placeholders :username :password
+
+
+
+
+
+
+
+        // replace all actual values with placeholders
+        // prepare the resulting query
+        // execute the statement, sending all the actual values in the form of array.
+
     }
 
-    // Insert
 
     // Update
 }

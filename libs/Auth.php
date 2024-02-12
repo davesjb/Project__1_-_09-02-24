@@ -21,7 +21,7 @@ class Auth
         ];
 
         $user = $database->fetch($sql, $params);
-        if (!$user || $user["password"] !== $password) {
+        if (!$user || !password_verify($password, $user["password"])) {
             Flash::set("error", "Username/Password is incorrect!");
             Redirect::to("login.php");
         }
@@ -36,5 +36,28 @@ class Auth
         // Session::delete("username");
         session_destroy();
         Redirect::to("/");
+    }
+
+    public static function register($username, $password)
+    {
+        $database = new Database();
+        $sql = "SELECT * FROM users WHERE username = :username";
+        $params = [
+            ":username" => $username
+        ];
+        $user = $database->fetch($sql, $params);
+        if ($user) {
+            Flash::set("error", "Username is not available");
+            Redirect::to("register.php");
+        }
+        $password = password_hash($password, PASSWORD_DEFAULT);
+
+        $data = [
+            "username" => $username,
+            "password" => $password
+        ];
+
+        $database->insert("users", $data);
+        die("user registered");
     }
 }
