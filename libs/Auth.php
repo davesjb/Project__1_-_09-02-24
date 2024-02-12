@@ -58,6 +58,8 @@ class Auth
         ];
 
         $database->insert("users", $data);
-        die("user registered");
+        // die("user registered");
+        Flash::set("success", "User Registered");
+        Redirect::to("login.php");
     }
 }

@@ -32,6 +32,13 @@ include "init.php";
                             </div>
                         <?php endif; ?>
 
+                        <?php if (Flash::has("success")) : ?>
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong>Success: </strong><?php echo Flash::display("success"); ?>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        <?php endif; ?>
+
                         <form action="login-process.php" method="post">
                             <div class="mb-3">
                                 <label for="username" class="form-label">Username</label>

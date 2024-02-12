@@ -1,19 +1,5 @@
 <?php
 include "init.php";
-$username = "bob";
-$password = "p";
-
-
-$table = "users";
-$data = [
-    "username" => $username,
-    "password" => $password
-
-];
-
-$database = new Database();
-$result = $database->insert($table, $data);
-// die();
 
 if (!Auth::isLoggedIn()) {
     Redirect::to("login.php");
