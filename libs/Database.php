@@ -103,9 +103,14 @@ class Database
         */
 
 
+    // $data = [
+    //     "username" => "david",
+    //     "password" => "p",
+    //     "id" => 1
+    // ];
 
     // Update
-    public function update($table, $data, $where)
+    public function update($table, $data, $where, $params = [])
     {
         $set = "";
         // .= adding value
@@ -115,7 +120,7 @@ class Database
 
         $set = rtrim($set, ", ");
         $sql = "UPDATE $table SET $set WHERE $where;";
-        return $this->query($sql, $data);
+        return $this->query($sql, array_merge($data, $params));
         // die($sql);
     }
 }

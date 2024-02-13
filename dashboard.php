@@ -3,12 +3,17 @@ include "init.php";
 $database = new Database();
 $table = "users";
 $data = [
-    "username" => "bahadur",
-    "password" => password_hash("p1", PASSWORD_DEFAULT),
+    "username" => "david",
+    "password" => password_hash("p2", PASSWORD_DEFAULT),
 ];
-$where = "id = 7";
 
-$result = $database->update($table, $data, $where);
+$params = [
+    "id" => 8
+];
+
+$where = "id = :id";
+
+$result = $database->update($table, $data, $where, $params);
 print_r($result);
 
 
