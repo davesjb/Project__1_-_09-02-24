@@ -1,5 +1,16 @@
 <?php
 include "init.php";
+$database = new Database();
+$table = "users";
+$data = [
+    "username" => "bahadur",
+    "password" => password_hash("p1", PASSWORD_DEFAULT),
+];
+$where = "id = 7";
+
+$result = $database->update($table, $data, $where);
+print_r($result);
+
 
 if (!Auth::isLoggedIn()) {
     Redirect::to("login.php");

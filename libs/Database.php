@@ -17,7 +17,6 @@ class Database
             // Set PDO error mode to exception
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
-
             echo "Connection failed: " . $e->getMessage();
         }
     }
@@ -31,6 +30,7 @@ class Database
         $statement->execute($params);
         return $statement;
     }
+
     // Read
     public function fetch($sql, $params = [])
     {
@@ -87,6 +87,35 @@ class Database
 
     }
 
+    /*
+    UPDATE table_name
+        SET column1 = value1, column2 = value2, ...
+        WHERE condition;
+        
+    $data = [
+        "username" => "david",
+        "password" => "p"
+    ];
+
+    username = "david"
+    password = "12345"
+    id = 3
+        */
+
+
 
     // Update
+    public function update($table, $data, $where)
+    {
+        $set = "";
+        // .= adding value
+        foreach ($data as $column => $value) {
+            $set .= "$column = :$column, ";
+        }
+
+        $set = rtrim($set, ", ");
+        $sql = "UPDATE $table SET $set WHERE $where;";
+        return $this->query($sql, $data);
+        // die($sql);
+    }
 }
