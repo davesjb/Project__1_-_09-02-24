@@ -7,14 +7,25 @@ $data = [
     "password" => password_hash("p2", PASSWORD_DEFAULT),
 ];
 
+// $params = [
+//     "id" => 7
+// ];
+
 $params = [
-    "id" => 8
+    "id" => 10
 ];
 
 $where = "id = :id";
 
-$result = $database->update($table, $data, $where, $params);
+// $result = $database->update($table, $data, $where, $params);
+// print_r($result);
+
+// $result = $database->delete($table, $where, $params);
+// print_r($result);
+
+$result = $database->fetchAll("SELECT * FROM users;");
 print_r($result);
+
 
 
 if (!Auth::isLoggedIn()) {

@@ -38,6 +38,25 @@ class Database
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
+
+    // Insert where what
+    /*
+
+    $table = "users";
+    $data = [
+        "username" => $username,
+        "password => $password
+    ];
+    
+    $database = new Database();
+    $result = $database->insert($table, $data);
+
+    (Chaining =>)
+    */
+
+
+
+
     public function insert($table, $data)
     {
 
@@ -47,7 +66,48 @@ class Database
         $sql = "INSERT INTO $table ($keys) VALUES ($values)";
 
         $this->query($sql, $data);
+
+
+        // username = "david"
+        // password = "p"
+
+        // Tables (users, products, sales, orders, etc)
+        // create a correct SQL INSERT statement
+        // INSERT query with positional placeholders :username :password
+
+
+
+
+
+
+
+        // replace all actual values with placeholders
+        // prepare the resulting query
+        // execute the statement, sending all the actual values in the form of array.
+
     }
+
+    /*
+    UPDATE table_name
+        SET column1 = value1, column2 = value2, ...
+        WHERE condition;
+        
+    $data = [
+        "username" => "david",
+        "password" => "p"
+    ];
+
+    username = "david"
+    password = "12345"
+    id = 3
+        */
+
+
+    // $data = [
+    //     "username" => "david",
+    //     "password" => "p",
+    //     "id" => 1
+    // ];
 
     // Update
     public function update($table, $data, $where, $params = [])
@@ -64,18 +124,12 @@ class Database
         // die($sql);
     }
 
-    // Search: mysql delete query
-    // DELETE FROM table_name WHERE condition;
-    public function delete($table, $where, $params = [])
+    // Delete
+    public function delete()
     {
-        $sql = "DELETE FROM $table WHERE $where;";
-        return $this->query($sql, $params);
     }
 
     // fetch all
-    public function fetchAll($sql)
-    {
-        $statement = $this->query($sql);
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
-    }
+
+
 }
