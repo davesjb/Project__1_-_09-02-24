@@ -2,22 +2,19 @@
 // endpoints, 
 class Api
 {
-
-    private $storage;
     private $allowedEndpoints = ["users", "products"];
     private $allowedMethods = ["GET", "POST"];
     private $accessToken;
     private $database;
 
     // Iniiates
-    public function __construct($storage, $accessToken)
+    public function __construct($accessToken)
     {
-        $this->storage = $storage;
         $this->accessToken = $accessToken;
         $this->database = new Database();
     }
 
-    public function handleRequest($endpoint, $method, $token, $data)
+    public function handleRequest($endpoint, $method, $token)
     {
         // Endpoint Check
         if (!in_array($endpoint, $this->allowedEndpoints)) {
@@ -40,7 +37,6 @@ class Api
                 break;
             case "GET":
                 return $this->getAll($endpoint);
-
                 break;
         }
     }
@@ -54,7 +50,7 @@ class Api
     public function response($message, $statusCode)
     {
         http_response_code($statusCode);
-        return ["message" => $message];
+        return json_encode(["message" => $message]);
     }
 
 
