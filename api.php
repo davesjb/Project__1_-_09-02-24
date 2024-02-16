@@ -4,6 +4,7 @@
 
 
 
+
 include "init.php";
 
 $api_key = 1234567891;
@@ -11,6 +12,11 @@ $api_key = 1234567891;
 $database = new Database();
 
 $products = $database->fetchAll("SELECT * FROM products;");
+$token = "1234567891";
+$api = new Api($products, $token);
+echo $api->handleRequest("products", "GET", "1234567891", $products);
+exit();
+
 // dd($products);
 
 
