@@ -30,6 +30,12 @@ class Auth
         Redirect::to("dashboard.php");
     }
 
+    public static function fetchProducts()
+    {
+        $database = new Database();
+        $sql = "SELECT * FROM products";
+    }
+
     // Task is simply to logout
     public static function logout()
     {
